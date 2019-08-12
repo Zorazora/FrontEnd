@@ -1,0 +1,34 @@
+<nz-layout class="layout">
+  <nz-header>
+    <app-header></app-header>
+  </nz-header>
+  <nz-layout>
+    <nz-sider nzWidth="200px" nzTheme="light">
+      <ul nz-menu nzMode="vertical" nzTheme="light">
+        <li nz-menu-item nz-tooltip nzPlacement="right">
+          <i nz-icon nzType="environment"></i>
+          <span (click)="selectedPart = 'gps'">位置监控</span>
+        </li>
+        <li nz-menu-item nz-tooltip nzPlacement="right">
+          <i nz-icon nzType="camera"></i>
+          <span (click)="selectedPart = 'frontcam'">前摄监控</span>
+        </li>
+        <li nz-menu-item nz-tooltip nzPlacement="right">
+          <i nz-icon nzType="camera"></i>
+          <span (click)="selectedPart = 'backcam'">后摄监控</span>
+        </li>
+        <li nz-menu-item nz-tooltip nzPlacement="right">
+          <i nz-icon nzType="picture"></i>
+          <span (click)="selectedPart = 'screen'">屏幕共享</span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <nz-content>
+        <div [ngSwitch]="selectedPart" style="margin: 50px">
+          <app-gps *ngSwitchCase="'gps'"></app-gps>
+        </div>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

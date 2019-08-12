@@ -1,0 +1,28 @@
+<nz-layout class="layout">
+  <nz-header>
+    <app-header></app-header>
+  </nz-header>
+  <nz-content>
+    <div nz-col nzSpan="9"></div>
+    <div nz-col nzSpan="15">
+      <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading" style="margin-top: 50px">
+        <ng-template #item let-item>
+          <nz-list-item (click)="routeToNav(item)" style="cursor: pointer; background-color: white; width: 400px">
+            <nz-list-item-meta
+              [nzTitle]="nzTitle"
+              nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              [nzDescription]="nzDescription"
+            >
+              <ng-template #nzTitle>
+                <a (click)="routeToNav(item)" >{{ item.name }}</a>
+              </ng-template>
+              <ng-template #nzDescription>
+                {{item.id}}
+              </ng-template>
+            </nz-list-item-meta>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+  </nz-content>
+</nz-layout>

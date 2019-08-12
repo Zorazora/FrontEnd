@@ -1,0 +1,45 @@
+<nz-layout class="layout">
+  <nz-header>
+    <app-header></app-header>
+  </nz-header>
+  <nz-content>
+    <div nz-col nzSpan="8"></div>
+    <div nz-col nzSpan="8">
+      <nz-card style="width: 500px; margin-top: 100px;">
+        <div nz-col nzSpan="4"></div>
+        <div nz-col nzSpan="16">
+          <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your username!">
+                <nz-input-group [nzPrefix]="UserPrefix">
+                  <input type="text" nz-input formControlName="userName" placeholder="Username" />
+                </nz-input-group>
+                <ng-template #UserPrefix><i nz-icon nzType="user"></i></ng-template>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <label nz-checkbox formControlName="remember">
+                  <span>Remember me</span>
+                </label>
+                <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
+                <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+                Or
+                <a (click)="(goRegister())">register now!</a>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </div>
+        <div nz-col nzSpan="4"></div>
+      </nz-card>
+    </div>
+    <div nz-col nzSpan="8"></div>
+  </nz-content>
+</nz-layout>
