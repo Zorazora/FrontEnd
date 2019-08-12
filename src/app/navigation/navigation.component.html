@@ -26,7 +26,7 @@
     <nz-layout class="inner-layout">
       <nz-content>
         <div [ngSwitch]="selectedPart" style="margin: 50px">
-          <app-gps *ngSwitchCase="'gps'"></app-gps>
+          <app-gps *ngSwitchCase="'gps'" [streamId]="streamId"></app-gps>
         </div>
       </nz-content>
     </nz-layout>

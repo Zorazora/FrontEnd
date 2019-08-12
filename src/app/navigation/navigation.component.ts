@@ -7,7 +7,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  private streamId: string;
+  streamId: string;
   selectedPart = 'gps';
 
   constructor(private routeInfo: ActivatedRoute, public route: Router) { }

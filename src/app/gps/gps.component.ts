@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PeerManager} from '../peer-manager';
 
 @Component({
@@ -7,6 +7,7 @@ import {PeerManager} from '../peer-manager';
   styleUrls: ['./gps.component.css']
 })
 export class GpsComponent implements OnInit {
+  @Input() streamId: string;
   public mediaConfig = {
     audio: true,
     video: {
@@ -17,10 +18,21 @@ export class GpsComponent implements OnInit {
   public client;
 
   constructor() {
-    this.client = new PeerManager();
   }
 
   ngOnInit() {
+    this.client = new PeerManager();
+    this.client.peerInit(this.streamId);
+    console.log(this.client.getGPS(this.streamId));
+    let listening;
+    listening = setInterval(() => {
+      let coordinate;
+      coordinate = this.client.getGPS(this.streamId);
+      if (coordinate.longitude !== undefined) {
+        console.log(coordinate);
+        clearInterval(listening);
+      }
+    }, 500);
   }
 
 }

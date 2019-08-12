@@ -19,7 +19,7 @@ export class Peer {
     let pc; pc = new adapter.RTCPeerConnection(pcConfig, pcConstraints);
     pc.onicecandidate = event => {
       if (event.candidate) {
-        socketUtil.send('candidate', remoteId, {
+        socketUtil.sendInfo('candidate', remoteId, {
           label: event.candidate.sdpMLineIndex,
           id: event.candidate.sdpMid,
           candidate: event.candidate.candidate

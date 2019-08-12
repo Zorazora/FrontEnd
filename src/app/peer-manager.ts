@@ -18,13 +18,40 @@ export class PeerManager {
   };
   public peerMap = {};
   public localStream;
-  public socketUtil;
-  public socket;
+  public socketUtil = new SocketUtil();
+  public socket = this.socketUtil.getSocket();
 
   constructor() {
-    this.socketUtil = new SocketUtil();
-    this.socket = this.socketUtil.getSocket();
-    this.socket.on('message', this.handleMessage);
+    let this1; this1 = this;
+    this.socket.on('message', message => {
+      const type = message.type;
+      const from = message.from;
+      console.log(this.peerMap)
+      let pc; pc = (this1.peerMap[from] || this1.addPeer(from)).pc;
+      console.log('received ' + type + ' from ' + from);
+      switch (type) {
+        case 'init':
+          this.toggleLocalStream(pc);
+          this.offer(from);
+          break;
+        case 'offer':
+          pc.setRemoteDescription(new RTCSessionDescription(message.payload), () => {}, this1.error);
+          this.answer(from);
+          break;
+        case 'answer':
+          pc.setRemoteDescription(new RTCSessionDescription(message.payload), () => {}, this1.error);
+          break;
+        case 'candidate':
+          if (pc.remoteDescription) {
+            pc.addIceCandidate(new RTCIceCandidate({
+              sdpMLineIndex: message.payload.label,
+              sdpMid: message.payload.id,
+              candidate: message.payload.candidate
+            }), () => {}, this1.error);
+          }
+          break;
+      }
+    });
     this.socket.on('id', id => {
       this.localId = id;
     });
@@ -61,6 +88,7 @@ export class PeerManager {
   handleMessage(message) {
     const type = message.type;
     const from = message.from;
+    console.log(this.peerMap)
     let pc; pc = (this.peerMap[from] || this.addPeer(from)).pc;
     console.log('received ' + type + ' from ' + from);
     switch (type) {
@@ -128,6 +156,7 @@ export class PeerManager {
   peerInit(remoteId) {
     console.log('peerInit', remoteId);
     let peer; peer = this.peerMap[remoteId] || this.addPeer(remoteId);
+    console.log(this.peerMap);
     this.socketUtil.sendInfo('init', remoteId, null);
   }
 

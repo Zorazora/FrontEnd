@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadData(): void {
-    const url = '/streams.json';
+    const url = '/api/streams.json';
     let this1; this1 = this;
     this.http.get(url).subscribe(data => {
       console.log(data);
