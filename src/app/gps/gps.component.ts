@@ -14,8 +14,11 @@ export class GpsComponent implements OnInit {
       optional: []
     }
   };
+  public client;
 
-  constructor(public client: PeerManager) { }
+  constructor() {
+    this.client = new PeerManager();
+  }
 
   ngOnInit() {
   }

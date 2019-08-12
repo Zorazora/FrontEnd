@@ -1,4 +1,4 @@
-import '../libs/adapter';
+import * as adapter from '../libs/adapter';
 export class Peer {
   public remoteVideoEl;
   public remoteId;
@@ -16,7 +16,7 @@ export class Peer {
   }
 
   createPeerConnection(pcConfig, pcConstraints, socketUtil, remoteId, remoteVideoEl) {
-    let pc; pc = new RTCPeerConnection(pcConfig, pcConstraints);
+    let pc; pc = new adapter.RTCPeerConnection(pcConfig, pcConstraints);
     pc.onicecandidate = event => {
       if (event.candidate) {
         socketUtil.send('candidate', remoteId, {
