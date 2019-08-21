@@ -14,6 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { GpsComponent } from './gps/gps.component';
+import { ViewComponent } from './view/view.component';
+import { FrontcamComponent } from './frontcam/frontcam.component';
+import { BackcamComponent } from './backcam/backcam.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { GpsComponent } from './gps/gps.component';
     LoginComponent,
     HomeComponent,
     NavigationComponent,
-    GpsComponent
+    GpsComponent,
+    ViewComponent,
+    FrontcamComponent,
+    BackcamComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@
         </li>
         <li nz-menu-item nz-tooltip nzPlacement="right">
           <i nz-icon nzType="picture"></i>
-          <span (click)="selectedPart = 'screen'">屏幕共享</span>
+          <span (click)="selectedPart = 'view'">屏幕共享</span>
         </li>
       </ul>
     </nz-sider>
@@ -27,6 +27,9 @@
       <nz-content>
         <div [ngSwitch]="selectedPart" style="margin: 50px">
           <app-gps *ngSwitchCase="'gps'" [streamId]="streamId"></app-gps>
+          <app-frontcam *ngSwitchCase="'frontcam'" [streamId]="streamId"></app-frontcam>
+          <app-backcam *ngSwitchCase="'backcam'" [streamId]="streamId"></app-backcam>
+          <app-view *ngSwitchCase="'view'" [streamId]="streamId"></app-view>
         </div>
       </nz-content>
     </nz-layout>

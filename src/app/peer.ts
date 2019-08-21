@@ -6,12 +6,14 @@ export class Peer {
   public dataChannel;
   public latitude;
   public longitude;
+  public remoteVideosContainer;
   constructor(pcConfig, pcConstraints, remoteId, socketUtil) {
     this.remoteVideoEl = document.createElement('video');
     this.remoteVideoEl.controls = true;
     this.remoteVideoEl.autoplay = true;
     this.remoteId = remoteId;
     this.pc = this.createPeerConnection(pcConfig, pcConstraints, socketUtil, remoteId, this.remoteVideoEl);
+    this.remoteVideosContainer = document.getElementById('remoteVideosContainer');
     this.dataChannel = this.createDataChannel();
   }
 
@@ -29,11 +31,11 @@ export class Peer {
     pc.onaddstream = event => {
       // stream 来自rtc.loadData
       attachMediaStream(remoteVideoEl, event.stream);
-      // remoteVideosContainer.appendChild(remoteVideoEl);
+      this.remoteVideosContainer.appendChild(remoteVideoEl);
     };
     pc.onremovestream = event => {
       remoteVideoEl.src = '';
-      // remoteVideosContainer.removeChild(remoteVideoEl);
+      this.remoteVideosContainer.removeChild(remoteVideoEl);
     };
     pc.oniceconnectionstatechange = event => {
       switch (
@@ -41,7 +43,7 @@ export class Peer {
           || event.target   ) // Firefox
           .iceConnectionState) {
         case 'disconnected':
-          // remoteVideosContainer.removeChild(remoteVideoEl);
+          this.remoteVideosContainer.removeChild(remoteVideoEl);
           break;
       }
     };

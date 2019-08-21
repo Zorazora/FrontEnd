@@ -1,3 +1,4 @@
+declare module 'adapter';
 declare var RTCPeerConnection: {
     new (configuration?: RTCConfiguration): RTCPeerConnection;
     prototype: RTCPeerConnection;

@@ -3,8 +3,8 @@
     <app-header></app-header>
   </nz-header>
   <nz-content>
-    <div nz-col nzSpan="9"></div>
-    <div nz-col nzSpan="15">
+    <div nz-col nzSpan="3"></div>
+    <div nz-col nzSpan="18">
       <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading" style="margin-top: 50px">
         <ng-template #item let-item>
           <nz-list-item (click)="routeToNav(item)" style="cursor: pointer; background-color: white; width: 400px">
@@ -24,5 +24,6 @@
         </ng-template>
       </nz-list>
     </div>
+    <div nz-col nzSpan="3"></div>
   </nz-content>
 </nz-layout>
