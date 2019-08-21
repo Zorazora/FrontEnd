@@ -30,12 +30,13 @@ export class Peer {
     };
     pc.onaddstream = event => {
       // stream 来自rtc.loadData
-      attachMediaStream(remoteVideoEl, event.stream);
-      this.remoteVideosContainer.appendChild(remoteVideoEl);
+      pc.addStream(event.stream);
+      //attachMediaStream(remoteVideoEl, event.stream);
+      //this.remoteVideosContainer.appendChild(remoteVideoEl);
     };
     pc.onremovestream = event => {
       remoteVideoEl.src = '';
-      this.remoteVideosContainer.removeChild(remoteVideoEl);
+      //this.remoteVideosContainer.removeChild(remoteVideoEl);
     };
     pc.oniceconnectionstatechange = event => {
       switch (
@@ -110,5 +111,10 @@ export class Peer {
     }
 
     this.dataChannel.send(data);
+  }
+
+  getStream(id){
+    let streams = this.pc.getRemoteStreams();
+    return streams[0];
   }
 }
