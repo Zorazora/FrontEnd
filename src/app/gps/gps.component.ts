@@ -26,9 +26,10 @@ export class GpsComponent implements OnInit {
   ngOnInit() {
     this.client = new PeerManager();
     this.client.peerInit(this.streamId);
-    console.log(this.client.getGPS(this.streamId));
     let listening;
     listening = setInterval(() => {
+      let state;
+      state = this.client.getPeer(this.streamId).getChannelState();
       let coordinate;
       coordinate = this.client.getGPS(this.streamId);
       if (coordinate.longitude !== undefined) {

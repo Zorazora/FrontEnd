@@ -54,7 +54,8 @@ export class Peer {
   createDataChannel() {
     const dataChannelOptions = {
       ordered: false, // 不保证到达顺序
-      maxRetransmitTime: 3000, // 最大重传时间
+      // maxRetransmitTime: 3000, // 最大重传时间
+      maxPacketTime: 3000,
       // 添加了negotiated 和 id之后,虽然dataChannel可以open，但是无法传送数据
     };
 
@@ -89,7 +90,7 @@ export class Peer {
     if (data.type === DATA_GPS) {
       this.latitude = data.latitude;
       this.longitude = data.longitude;
-    } else if (data['type' === DATA_FAIL]) {
+    } else if (data.type === DATA_FAIL) {
       this.latitude = undefined;
       this.longitude = undefined;
     }

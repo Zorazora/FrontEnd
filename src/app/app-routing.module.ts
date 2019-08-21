@@ -8,7 +8,7 @@ import {NavigationComponent} from './navigation/navigation.component';
 const routes: Routes = [
   {path: '', component: HomeComponent, children: []},
   {path: 'login', component: LoginComponent, children: []},
-  {path: 'navigation/:id', component: NavigationComponent, children: []}
+  {path: 'navigation/:streamId', component: NavigationComponent, children: []}
 ];
 
 @NgModule({

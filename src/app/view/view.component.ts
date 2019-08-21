@@ -16,7 +16,17 @@ export class ViewComponent implements OnInit {
   ngOnInit() {
     this.client = new PeerManager();
     this.client.peerInit(this.streamId);
-    this.client.getScreen(this.streamId);
+    let listening;
+    listening = setInterval(() => {
+      let state;
+      state = this.client.getPeer(this.streamId).getChannelState();
+      if (state === 'open') {
+        setTimeout(() => {
+          this.client.getScreen(this.streamId);
+          clearInterval(listening);
+        }, 1000);
+      }
+    }, 500);
   }
 
 }

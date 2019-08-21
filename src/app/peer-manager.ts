@@ -141,7 +141,8 @@ export class PeerManager {
 
   setLocalStream(stream) {
     if (!stream) {
-      for ( const id of this.peerMap) {
+      let id;
+      for ( id of this.peerMap) {
         let pc; pc = this.peerMap[id].pc;
         if (!!pc.getLocalStreams().length) {
           pc.removeStream(this.localStream);
