@@ -20,6 +20,7 @@ export class PeerManager {
   public localStream;
   public socketUtil = new SocketUtil();
   public socket = this.socketUtil.getSocket();
+  private static peerManager:PeerManager;
 
   constructor() {
     let this1; this1 = this;
@@ -194,5 +195,13 @@ export class PeerManager {
 
   getBackCamera(remoteId) {
     this.sendDataByChannel('back', remoteId);
+  }
+
+  public static getInstance(){
+    if(PeerManager.peerManager == null){
+      PeerManager.peerManager = new PeerManager();
+    }
+
+    return PeerManager.peerManager;
   }
 }
