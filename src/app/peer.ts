@@ -31,12 +31,12 @@ export class Peer {
     pc.onaddstream = event => {
       // stream 来自rtc.loadData
       pc.addStream(event.stream);
-      //attachMediaStream(remoteVideoEl, event.stream);
-      //this.remoteVideosContainer.appendChild(remoteVideoEl);
+      // attachMediaStream(remoteVideoEl, event.stream);
+      // this.remoteVideosContainer.appendChild(remoteVideoEl);
     };
     pc.onremovestream = event => {
       remoteVideoEl.src = '';
-      //this.remoteVideosContainer.removeChild(remoteVideoEl);
+      // this.remoteVideosContainer.removeChild(remoteVideoEl);
     };
     pc.oniceconnectionstatechange = event => {
       switch (
@@ -44,7 +44,7 @@ export class Peer {
           || event.target   ) // Firefox
           .iceConnectionState) {
         case 'disconnected':
-          this.remoteVideosContainer.removeChild(remoteVideoEl);
+          // this.remoteVideosContainer.removeChild(remoteVideoEl);
           break;
       }
     };
@@ -113,8 +113,25 @@ export class Peer {
     this.dataChannel.send(data);
   }
 
-  getStream(id){
-    let streams = this.pc.getRemoteStreams();
+  getStream(id) {
+    let streams; streams = this.pc.getRemoteStreams();
     return streams[0];
+  }
+
+  addVideo() {
+    let remoteVideosContainer;
+    remoteVideosContainer = document.getElementById('remoteVideosContainer');
+    let remoteStream;
+    remoteStream = this.getStream('ARDAMS');
+    let num;
+    num = remoteVideosContainer.children.length;
+    if (num === 0) {
+      let remoteVideoEL;
+      remoteVideoEL = document.createElement('video');
+      remoteVideoEL.autoplay = true;
+      remoteVideoEL.controls = true;
+      attachMediaStream(remoteVideoEL, remoteStream);
+      remoteVideosContainer.appendChild(remoteVideoEL);
+    }
   }
 }

@@ -8,20 +8,22 @@ import {PeerManager} from '../peer-manager';
 })
 export class ViewComponent implements OnInit {
   @Input() streamId: string;
-  public loading = true;
   public client;
 
   constructor() { }
 
   ngOnInit() {
-    this.client = new PeerManager();
+    this.client = PeerManager.getInstance();
     this.client.peerInit(this.streamId);
     let listening;
     listening = setInterval(() => {
       let state;
-      state = this.client.getPeer(this.streamId).getChannelState();
+      let peer;
+      peer = this.client.getPeer(this.streamId);
+      state = peer.getChannelState();
       if (state === 'open') {
         setTimeout(() => {
+          peer.addVideo();
           this.client.getScreen(this.streamId);
           clearInterval(listening);
         }, 1000);
