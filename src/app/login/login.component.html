@@ -8,7 +8,7 @@
       <nz-card style="width: 500px; margin-top: 100px;">
         <div nz-col nzSpan="4"></div>
         <div nz-col nzSpan="16">
-          <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+          <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()" *ngIf="login===true">
             <nz-form-item>
               <nz-form-control nzErrorTip="Please input your username!">
                 <nz-input-group [nzPrefix]="UserPrefix">
@@ -26,13 +26,40 @@
             </nz-form-item>
             <nz-form-item>
               <nz-form-control>
-                <label nz-checkbox formControlName="remember">
-                  <span>Remember me</span>
-                </label>
-                <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
                 <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
                 Or
-                <a (click)="(goRegister())">register now!</a>
+                <a (click)="login = false">register now!</a>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+          <form nz-form [formGroup]="registerForm" class="login-form" (ngSubmit)="register()" *ngIf="login===false">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your username!">
+                <nz-input-group [nzPrefix]="UserPrefix">
+                  <input type="text" nz-input formControlName="userName" placeholder="Username" />
+                </nz-input-group>
+                <ng-template #UserPrefix><i nz-icon nzType="user"></i></ng-template>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="passwordAgain" placeholder="Password" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button class="login-form-button" [nzType]="'primary'">Register</button>
+                Or
+                <a (click)="login = true">Log in</a>
               </nz-form-control>
             </nz-form-item>
           </form>

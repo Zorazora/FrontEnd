@@ -118,9 +118,9 @@ export class Peer {
     return streams[0];
   }
 
-  addVideo() {
+  addVideo(container) {
     let remoteVideosContainer;
-    remoteVideosContainer = document.getElementById('remoteVideosContainer');
+    remoteVideosContainer = document.getElementById(container);
     let remoteStream;
     remoteStream = this.getStream('ARDAMS');
     let num;

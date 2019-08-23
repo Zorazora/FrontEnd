@@ -22,10 +22,10 @@ export class FrontcamComponent implements OnInit {
       peer = this.client.getPeer(this.streamId);
       state = peer.getChannelState();
       if (state === 'open') {
+        clearInterval(listening);
         setTimeout(() => {
-          peer.addVideo();
+          peer.addVideo('frontcamContainer');
           this.client.getFrontCamera(this.streamId);
-          clearInterval(listening);
         }, 1000);
       }
     }, 500);

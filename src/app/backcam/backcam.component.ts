@@ -22,10 +22,10 @@ export class BackcamComponent implements OnInit {
       peer = this.client.getPeer(this.streamId);
       state = peer.getChannelState();
       if (state === 'open') {
+        clearInterval(listening);
         setTimeout(() => {
-          peer.addVideo();
+          peer.addVideo('backcamContainer');
           this.client.getBackCamera(this.streamId);
-          clearInterval(listening);
         }, 1000);
       }
     }, 500);

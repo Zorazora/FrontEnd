@@ -8,15 +8,21 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  validateForm: FormGroup;
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+  private login = true;
 
   constructor(private fb: FormBuilder, public router: Router) { }
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
+    this.loginForm = this.fb.group({
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]]
+    });
+    this.registerForm = this.fb.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      remember: [true]
+      passwordAgain: [null, [Validators.required]]
     });
   }
 
@@ -30,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  goRegister(): void {
-    console.log('register');
+  register(): void {
+
   }
 }

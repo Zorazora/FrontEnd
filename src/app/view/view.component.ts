@@ -22,10 +22,10 @@ export class ViewComponent implements OnInit {
       peer = this.client.getPeer(this.streamId);
       state = peer.getChannelState();
       if (state === 'open') {
+        clearInterval(listening);
         setTimeout(() => {
-          peer.addVideo();
+          peer.addVideo('remoteVideosContainer');
           this.client.getScreen(this.streamId);
-          clearInterval(listening);
         }, 1000);
       }
     }, 500);
