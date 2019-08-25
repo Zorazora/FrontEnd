@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   private login = true;
 
-  constructor(private fb: FormBuilder, public router: Router) { }
+  constructor(private fb: FormBuilder, public router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -37,6 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
   register(): void {
-
+    this.http.post('/api/user/register', this.registerForm).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
   }
 }
