@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-room-list',
@@ -11,9 +12,12 @@ export class RoomListComponent implements OnInit {
   public roomType;
   public roomList = [];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('username') === null) {
+      this.router.navigate(['login']);
+    }
   }
 
   createRoom(): void {

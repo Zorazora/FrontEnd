@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
   }
 
   register(): void {
-    this.http.post('/api/user/register', this.registerForm).subscribe(data => {
+    let registInfo;
+    registInfo = {username: this.registerForm.getRawValue().userName, password: this.registerForm.getRawValue().password};
+    this.http.post('/api/user/register', registInfo).subscribe(data => {
       console.log(data);
     }, error => {
       console.log(error);
