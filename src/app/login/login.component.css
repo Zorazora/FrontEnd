@@ -13,3 +13,8 @@
 nz-content {
   height: 800px;
 }
+.alert{
+  float: right;
+  width: 300px;
+  height: 50px;
+}

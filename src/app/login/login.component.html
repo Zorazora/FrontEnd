@@ -68,5 +68,9 @@
       </nz-card>
     </div>
     <div nz-col nzSpan="8"></div>
+    <nz-alert class="alert" nzType="success" nzMessage="Regist Successfully" nzShowIcon *ngIf="info==='success'"></nz-alert>
+    <nz-alert class="alert" nzType="warning" nzMessage="This username has existed" nzShowIcon *ngIf="info==='existed'"></nz-alert>
+    <nz-alert class="alert" nzType="error" nzMessage="Inconsistent input password twice" nzShowIcon *ngIf="info==='error'"></nz-alert>
+    <nz-alert class="alert" nzType="warning" nzMessage="Server wrong" nzShowIcon *ngIf="info==='wrong'"></nz-alert>
   </nz-content>
 </nz-layout>
