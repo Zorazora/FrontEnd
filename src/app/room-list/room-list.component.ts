@@ -27,7 +27,8 @@ export class RoomListComponent implements OnInit {
     roomInfo = {};
     roomInfo.type = this.roomType;
     roomInfo.username = sessionStorage.getItem('username');
-    this.http.get('/api/room/createRoom', roomInfo).subscribe(data => {
+    console.log(roomInfo);
+    this.http.post('/api/room/createRoom', roomInfo).subscribe(data => {
       console.log(data);
       this.visible = false;
       let this1;
@@ -41,6 +42,7 @@ export class RoomListComponent implements OnInit {
   loadData(): void {
     this.http.get('/api/room/roomList', {username: sessionStorage.getItem('username')}).subscribe(data => {
       this.roomList = data.roomList;
+      console.log(this.roomList);
     }, error => {
       console.log(error);
     });

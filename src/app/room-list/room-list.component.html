@@ -17,7 +17,28 @@
         <button nz-button nzType="primary" (click)="visible=true">Create Room Now</button>
       </ng-template>
     </nz-empty>
-
+    <nz-table #basicTable [nzData]="roomList" *ngIf="roomList.length!==0">
+      <thead>
+      <tr>
+        <th>RoomID</th>
+        <th>RoomType</th>
+        <th>CreateTime</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data }}</td>
+        <td>{{ data }}</td>
+        <td>{{ data }}</td>
+        <td>
+          <a>Delete</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Enter</a>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
     <nz-modal [nzVisible]="visible" nzTitle="Create A Room" (nzOnCancel)="visible=false"
               (nzOnOk)="createRoom()" [nzOkLoading]="isOkLoading">
       <nz-radio-group [(ngModel)]="roomType">
