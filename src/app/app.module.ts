@@ -17,6 +17,7 @@ import { GpsComponent } from './gps/gps.component';
 import { ViewComponent } from './view/view.component';
 import { FrontcamComponent } from './frontcam/frontcam.component';
 import { BackcamComponent } from './backcam/backcam.component';
+import { RoomListComponent } from './room-list/room-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BackcamComponent } from './backcam/backcam.component';
     GpsComponent,
     ViewComponent,
     FrontcamComponent,
-    BackcamComponent
+    BackcamComponent,
+    RoomListComponent
   ],
   imports: [
     BrowserModule,

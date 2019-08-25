@@ -49,9 +49,9 @@
               </nz-form-control>
             </nz-form-item>
             <nz-form-item>
-              <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-form-control nzErrorTip="Please input your Password again!">
                 <nz-input-group nzPrefixIcon="lock">
-                  <input type="password" nz-input formControlName="passwordAgain" placeholder="Password" />
+                  <input type="password" nz-input formControlName="passwordAgain" placeholder="Conform your password" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -59,7 +59,7 @@
               <nz-form-control>
                 <button nz-button class="login-form-button" [nzType]="'primary'">Register</button>
                 Or
-                <a (click)="login = true">Log in</a>
+                <a (click)="login = true">Log in!</a>
               </nz-form-control>
             </nz-form-item>
           </form>
