@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-room-list',
@@ -13,7 +14,7 @@ export class RoomListComponent implements OnInit {
   public roomType;
   public roomList = [];
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private message: NzMessageService) { }
 
   ngOnInit() {
     if (sessionStorage.getItem('username') === null) {
@@ -48,8 +49,17 @@ export class RoomListComponent implements OnInit {
     });
   }
 
-  deleteRoom(): void {
-
+  deleteRoom(room): void {
+    this.http.post('/api/room/roomList/delete/', {roomId: room});
+    // this.message.create('success', 'Delete Successfully');
+    // this.loadData();
   }
 
+  enterRoom(roomId, roomType): void {
+    if (roomType === 'monitor') {
+
+    } else {
+
+    }
+  }
 }

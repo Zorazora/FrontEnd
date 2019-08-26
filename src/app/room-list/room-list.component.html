@@ -48,9 +48,9 @@
           <td>{{ data.type }}</td>
           <td>{{ data.createTime }}</td>
           <td>
-            <a (click)="deleteRoom()">Delete</a>
+            <a nz-popconfirm nzTitle="Are you sure delete this room?" (nzOnConfirm)="deleteRoom(data.roomId)">Delete</a>
             <nz-divider nzType="vertical"></nz-divider>
-            <a (click)="enterRoom()">Enter</a>
+            <a (click)="enterRoom(data.roomId, data.roomType)">Enter</a>
           </td>
         </tr>
         </tbody>

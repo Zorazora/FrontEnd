@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(public router: Router, private http: HttpClient) {}
 
   ngOnInit() {
-    if (sessionStorage.getItem('userID') === null) {
+    if (sessionStorage.getItem('username') === null) {
       this.router.navigate(['login']);
     }
     this.loadData();
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   routeToNav(stream): void {
-    console.log('hi')
+    console.log('hi');
     sessionStorage.setItem(stream.id, JSON.stringify(stream));
     this.router.navigate(['/navigation/' + stream.id]);
   }
