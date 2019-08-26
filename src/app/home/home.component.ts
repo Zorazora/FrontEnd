@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -10,22 +10,24 @@ import {HttpClient} from '@angular/common/http';
 export class HomeComponent implements OnInit {
   loading = false;
   data = [];
+  public roomId: string;
 
-  constructor(public router: Router, private http: HttpClient) {}
+  constructor(public router: Router, private http: HttpClient, private routeInfo: ActivatedRoute) {}
 
   ngOnInit() {
     if (sessionStorage.getItem('username') === null) {
       this.router.navigate(['login']);
     }
+    this.routeInfo.params.subscribe((params: Params) => {
+      this.roomId = params.roomId;
+    });
+    console.log(this.roomId);
     // this.loadData();
   }
 
   loadData(): void {
-    const url = '/api/streams.json';
-    let this1; this1 = this;
-    this.http.get(url).subscribe(data => {
-      console.log(data);
-      this1.data = data;
+    this.http.get('/api/room/', {roomId: this.roomId}).subscribe(data => {
+
     }, error => {
       console.log(error);
     });
