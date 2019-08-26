@@ -50,14 +50,21 @@ export class RoomListComponent implements OnInit {
   }
 
   deleteRoom(room): void {
-    this.http.post('/api/room/roomList/delete/', {roomId: room});
+    console.log(room);
+    this.http.post('/api/room/roomList/delete', {roomId: room}).subscribe(data => {
+      console.log(data);
+      this.loadData();
+    }, error => {
+      console.log(error);
+    });
     // this.message.create('success', 'Delete Successfully');
     // this.loadData();
   }
 
   enterRoom(roomId, roomType): void {
+    console.log(roomType)
     if (roomType === 'monitor') {
-
+      this.router.navigate(['/monitorRoom/' + roomId]);
     } else {
 
     }

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     if (sessionStorage.getItem('username') === null) {
       this.router.navigate(['login']);
     }
-    this.loadData();
+    // this.loadData();
   }
 
   loadData(): void {

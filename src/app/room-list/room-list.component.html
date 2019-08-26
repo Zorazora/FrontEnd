@@ -43,14 +43,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let data of basicTable.data">
+        <tr *ngFor="let data of roomList">
           <td>{{ data.roomId }}</td>
           <td>{{ data.type }}</td>
           <td>{{ data.createTime }}</td>
           <td>
             <a nz-popconfirm nzTitle="Are you sure delete this room?" (nzOnConfirm)="deleteRoom(data.roomId)">Delete</a>
             <nz-divider nzType="vertical"></nz-divider>
-            <a (click)="enterRoom(data.roomId, data.roomType)">Enter</a>
+            <a (click)="enterRoom(data.roomId, data.type)">Enter</a>
           </td>
         </tr>
         </tbody>
