@@ -22,12 +22,12 @@ export class HomeComponent implements OnInit {
       this.roomId = params.roomId;
     });
     console.log(this.roomId);
-    // this.loadData();
+    this.loadData();
   }
 
   loadData(): void {
     this.http.get('/api/room/', {roomId: this.roomId}).subscribe(data => {
-
+      console.log(data);
     }, error => {
       console.log(error);
     });
