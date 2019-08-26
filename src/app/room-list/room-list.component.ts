@@ -40,12 +40,16 @@ export class RoomListComponent implements OnInit {
   }
 
   loadData(): void {
-    this.http.get('/api/room/roomList', {username: sessionStorage.getItem('username')}).subscribe(data => {
+    this.http.post('/api/room/roomList', {username: sessionStorage.getItem('username')}).subscribe(data => {
       this.roomList = data.roomList;
       console.log(this.roomList);
     }, error => {
       console.log(error);
     });
+  }
+
+  deleteRoom(): void {
+
   }
 
 }

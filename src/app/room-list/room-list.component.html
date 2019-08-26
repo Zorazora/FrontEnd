@@ -17,28 +17,46 @@
         <button nz-button nzType="primary" (click)="visible=true">Create Room Now</button>
       </ng-template>
     </nz-empty>
-    <nz-table #basicTable [nzData]="roomList" *ngIf="roomList.length!==0">
-      <thead>
-      <tr>
-        <th>RoomID</th>
-        <th>RoomType</th>
-        <th>CreateTime</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let data of basicTable.data">
-        <td>{{ data }}</td>
-        <td>{{ data }}</td>
-        <td>{{ data }}</td>
-        <td>
-          <a>Delete</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a>Enter</a>
-        </td>
-      </tr>
-      </tbody>
-    </nz-table>
+    <div nz-col nzSpan="3"></div>
+    <div nz-col nzSpan="18" style="margin-top: 50px" *ngIf="roomList.length!==0">
+      <button
+        nz-button
+        [nzType]="'primary'"
+        (click)="loadData()"
+      >
+        Refresh Data
+      </button>
+      <button
+        nz-button style="margin-left: 20px"
+        [nzType]="'primary'"
+        (click)="visible = true"
+      >
+        Create Room
+      </button>
+      <nz-table #basicTable [nzData]="roomList" style="margin-top: 20px;">
+        <thead>
+        <tr>
+          <th>RoomID</th>
+          <th>RoomType</th>
+          <th>CreateTime</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.roomId }}</td>
+          <td>{{ data.type }}</td>
+          <td>{{ data.createTime }}</td>
+          <td>
+            <a (click)="deleteRoom()">Delete</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="enterRoom()">Enter</a>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+    <div nz-col nzSpan="3"></div>
     <nz-modal [nzVisible]="visible" nzTitle="Create A Room" (nzOnCancel)="visible=false"
               (nzOnOk)="createRoom()" [nzOkLoading]="isOkLoading">
       <nz-radio-group [(ngModel)]="roomType">
