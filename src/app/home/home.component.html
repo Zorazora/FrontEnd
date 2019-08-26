@@ -5,7 +5,23 @@
   <nz-content>
     <div nz-col nzSpan="3"></div>
     <div nz-col nzSpan="18">
-      <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading" style="margin-top: 50px">
+      <nz-card style="margin-top: 50px" nzType="inner" nzTitle="RoomInfo">
+        <nz-descriptions>
+          <nz-descriptions-item nzTitle="RoomId">{{roomInfo.roomId}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="RoomType">{{roomInfo.roomType}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="RoomCode">
+            {{roomInfo.roomCode}}
+            <button
+              style="margin-left: 20px"
+              nz-button
+              [nzType]="'primary'"
+            >
+              Get New Code
+            </button>
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </nz-card>
+      <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading" style="margin-top: 20px">
         <ng-template #item let-item>
           <nz-list-item (click)="routeToNav(item)" style="cursor: pointer; background-color: white; width: 400px">
             <nz-list-item-meta
