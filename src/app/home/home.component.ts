@@ -10,7 +10,8 @@ import {HttpClient} from '@angular/common/http';
 export class HomeComponent implements OnInit {
   loading = false;
   data = [];
-  public roomId: string;
+  public roomId;
+  public roomInfo = {};
 
   constructor(public router: Router, private http: HttpClient, private routeInfo: ActivatedRoute) {}
 
@@ -26,8 +27,10 @@ export class HomeComponent implements OnInit {
   }
 
   loadData(): void {
-    this.http.get('/api/room/', {roomId: this.roomId}).subscribe(data => {
+    this.http.post('/api/room/', {roomId: this.roomId}).subscribe(data => {
       console.log(data);
+      this.data = data.streamList;
+      this.roomInfo = data;
     }, error => {
       console.log(error);
     });
