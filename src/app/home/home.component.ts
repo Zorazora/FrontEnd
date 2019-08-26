@@ -9,7 +9,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
   loading = false;
-  data = [];
   public roomId;
   public roomInfo = {};
 
@@ -29,7 +28,6 @@ export class HomeComponent implements OnInit {
   loadData(): void {
     this.http.post('/api/room/', {roomId: this.roomId}).subscribe(data => {
       console.log(data);
-      this.data = data.streamList;
       this.roomInfo = data;
     }, error => {
       console.log(error);
@@ -40,5 +38,13 @@ export class HomeComponent implements OnInit {
     console.log('hi');
     sessionStorage.setItem(stream.id, JSON.stringify(stream));
     this.router.navigate(['/navigation/' + stream.id]);
+  }
+
+  getCode(room): void {
+    this.http.post('/api/room/roomCode', {roomId: room}).subscribe(data => {
+      this.roomInfo.code = data.roomCode;
+    }, error => {
+      console.log(error);
+    });
   }
 }
