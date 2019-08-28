@@ -184,7 +184,7 @@ export class PeerManager {
   getGPS(remoteId) {
     this.sendDataByChannel('GPS', remoteId);
     const peer = this.getPeer(remoteId);
-    const position = {longitude: peer.dataChannel.longitude, latitude: peer.dataChannel.latitude};
+    const position = {longitude: peer.longitude, latitude: peer.latitude};
     return position;
   }
 

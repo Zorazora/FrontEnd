@@ -31,4 +31,26 @@ export class ViewComponent implements OnInit {
     }, 500);
   }
 
+  captureImage(): void {
+    let video;
+    video = document.getElementById('remoteVideosContainerVideo');
+    if (video !== null) {
+      let canvas;
+      canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      let image;
+      image = document.createElement('img');
+      image.src = canvas.toDataURL('image/jpeg');
+      let a; a = document.createElement('a');
+      let event; event = new MouseEvent('click');
+      let date; date = new Date();
+      let name; name = date.getFullYear().toString() + (date.getMonth() + 1).toString() + (date.getDate()).toString();
+      a.download = name;
+      a.href = canvas.toDataURL('image/jpeg');
+      a.dispatchEvent(event);
+    }
+  }
+
 }

@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, Params} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {Router, Params, ActivatedRoute} from '@angular/router';
+import {PeerManager} from '../peer-manager';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-punch',
+  templateUrl: './punch.component.html',
+  styleUrls: ['./punch.component.css']
 })
-export class HomeComponent implements OnInit {
-  loading = false;
-  private roomId;
+export class PunchComponent implements OnInit {
   private roomInfo = {};
+  private roomId;
+  private client;
 
-  constructor(public router: Router, private http: HttpClient, private routeInfo: ActivatedRoute) {}
+  constructor(private http: HttpClient, private router: Router, private routeInfo: ActivatedRoute) { }
 
   ngOnInit() {
+    this.client = PeerManager.getInstance();
     if (sessionStorage.getItem('username') === null) {
       this.router.navigate(['login']);
     }
@@ -29,15 +31,12 @@ export class HomeComponent implements OnInit {
     this.http.post('/api/room/', {roomId: this.roomId}).subscribe(data => {
       console.log(data);
       this.roomInfo = data;
+      for ( const i of this.roomInfo.streamList) {
+        this.client.peerInit(i.id);
+      }
     }, error => {
       console.log(error);
     });
-  }
-
-  routeToNav(stream): void {
-    console.log('hi');
-    sessionStorage.setItem(stream.id, JSON.stringify(stream));
-    this.router.navigate(['/navigation/' + stream.id]);
   }
 
   getCode(room): void {

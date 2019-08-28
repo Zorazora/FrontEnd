@@ -10,15 +10,15 @@ declare var BMap: any;
 })
 export class GpsComponent implements OnInit {
   @Input() streamId: string;
-  public mediaConfig = {
+  private mediaConfig = {
     audio: true,
     video: {
       mandatory: {},
       optional: []
     }
   };
-  public client;
-  public loading = true;
+  private client;
+  private loading = true;
 
   constructor() {
   }

@@ -66,8 +66,7 @@ export class Peer {
     dataChannel.onerror = error => {
       console.log('Data Channel Error:', error);
     };
-
-    dataChannel.onmessage = this.onMessageHandler;  /*function (event) {
+    dataChannel.onmessage = this.onMessageHandler.bind(this);  /*function (event) {
 
         };*/
 
@@ -94,6 +93,11 @@ export class Peer {
     } else if (data.type === DATA_FAIL) {
       this.latitude = undefined;
       this.longitude = undefined;
+    } else if (data.type === 'PUNCH') {
+      console.log(this.remoteId);
+      let container;
+      container = document.getElementById(this.remoteId);
+      container.style.visibility = 'visible';
     }
   }
 
@@ -128,6 +132,7 @@ export class Peer {
     if (num === 0) {
       let remoteVideoEL;
       remoteVideoEL = document.createElement('video');
+      remoteVideoEL.id = container + 'Video';
       remoteVideoEL.autoplay = true;
       remoteVideoEL.controls = true;
       attachMediaStream(remoteVideoEL, remoteStream);

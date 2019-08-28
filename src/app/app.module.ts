@@ -18,6 +18,7 @@ import { ViewComponent } from './view/view.component';
 import { FrontcamComponent } from './frontcam/frontcam.component';
 import { BackcamComponent } from './backcam/backcam.component';
 import { RoomListComponent } from './room-list/room-list.component';
+import { PunchComponent } from './punch/punch.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RoomListComponent } from './room-list/room-list.component';
     ViewComponent,
     FrontcamComponent,
     BackcamComponent,
-    RoomListComponent
+    RoomListComponent,
+    PunchComponent
   ],
   imports: [
     BrowserModule,

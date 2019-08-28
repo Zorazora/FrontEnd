@@ -67,7 +67,7 @@ export class RoomListComponent implements OnInit {
     if (roomType === 'monitor') {
       this.router.navigate(['/monitorRoom/' + roomId]);
     } else {
-      // TODO punch scenario
+      this.router.navigate(['/punchRoom/' + roomId]);
     }
   }
 }

@@ -8,7 +8,7 @@
       <nz-card style="margin-top: 20px" nzType="inner" nzTitle="RoomInfo" nzSize="small">
         <nz-descriptions>
           <nz-descriptions-item nzTitle="RoomId">{{roomInfo.roomId}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="RoomType">monitor</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="RoomType">punch</nz-descriptions-item>
           <nz-descriptions-item nzTitle="RoomCode">
             {{roomInfo.code}}
             <button
@@ -30,15 +30,15 @@
       >
         Refresh List
       </button>
-      <nz-list [nzDataSource]="roomInfo.streamList" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading" style="margin-top: 20px">
+      <nz-list [nzDataSource]="roomInfo.streamList" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" style="margin-top: 20px">
         <ng-template #item let-item>
-          <nz-list-item (click)="routeToNav(item)" style="cursor: pointer; background-color: white;">
+          <nz-list-item style="background-color: white;">
             <nz-list-item-meta
               [nzAvatar]="nzAvatar"
               [nzDescription]="nzDescription"
             >
               <ng-template #nzTitle>
-                <a (click)="routeToNav(item)" >{{ item.name }}</a>
+                <a>{{ item.name }}</a>
               </ng-template>
               <ng-template #nzAvatar>
                 <nz-avatar nzSize="large" nzIcon="user" style="background-color:#87d068; margin-left: 20px"></nz-avatar>
@@ -50,6 +50,7 @@
                 </nz-descriptions>
               </ng-template>
             </nz-list-item-meta>
+            <nz-tag [id]="item.id" [nzColor]="'#87d068'" style="visibility: hidden; margin-right: 20px;">Success Punched In</nz-tag>
           </nz-list-item>
         </ng-template>
       </nz-list>

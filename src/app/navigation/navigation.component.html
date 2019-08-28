@@ -5,19 +5,19 @@
   <nz-layout>
     <nz-sider nzWidth="200px" nzTheme="light">
       <ul nz-menu nzMode="vertical" nzTheme="light">
-        <li nz-menu-item nz-tooltip nzPlacement="right">
+        <li nz-menu-item nz-tooltip nzPlacement="right" [nzSelected]="selectedPart==='gps'">
           <i nz-icon nzType="environment"></i>
           <span (click)="selectedPart = 'gps'">位置监控</span>
         </li>
-        <li nz-menu-item nz-tooltip nzPlacement="right">
+        <li nz-menu-item nz-tooltip nzPlacement="right" [nzSelected]="selectedPart==='frontcam'">
           <i nz-icon nzType="camera"></i>
           <span (click)="selectedPart = 'frontcam'">前摄监控</span>
         </li>
-        <li nz-menu-item nz-tooltip nzPlacement="right">
+        <li nz-menu-item nz-tooltip nzPlacement="right" [nzSelected]="selectedPart==='backcam'">
           <i nz-icon nzType="camera"></i>
           <span (click)="selectedPart = 'backcam'">后摄监控</span>
         </li>
-        <li nz-menu-item nz-tooltip nzPlacement="right">
+        <li nz-menu-item nz-tooltip nzPlacement="right" [nzSelected]="selectedPart==='view'">
           <i nz-icon nzType="picture"></i>
           <span (click)="selectedPart = 'view'">屏幕共享</span>
         </li>

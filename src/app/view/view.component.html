@@ -1,1 +1,9 @@
-<div id="remoteVideosContainer" style="width:100%;"></div>
+<button
+  id="capture"
+  nz-button
+  [nzType]="'primary'"
+  (click)="captureImage()"
+>
+  Capture
+</button>
+<div id="remoteVideosContainer" style="width:100%;margin-top: 20px"></div>
